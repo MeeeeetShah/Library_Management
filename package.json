@@ -4,7 +4,7 @@
   "description": "it is tdd library_management",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
