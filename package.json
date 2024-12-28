@@ -2,7 +2,7 @@
   "name": "library_management",
   "version": "1.0.0",
   "description": "it is tdd library_management",
-  "main": "index.js",
+  "main": "library.js",
   "scripts": {
     "test": "jest"
   },
