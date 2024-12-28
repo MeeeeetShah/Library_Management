@@ -1,0 +1,14 @@
+{
+  "name": "library_management",
+  "version": "1.0.0",
+  "description": "it is tdd library_management",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
