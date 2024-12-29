@@ -79,9 +79,8 @@ test("should not return a book which is not borrowed", () => {
     author: "Meet Shah",
     year: 1925,
   });
-
-  library.borrowBook("1234567890");
-  expect(() => library.returnBook("1234567899")).toThrow("This book was not borrowed");
+ 
+  expect(() => library.returnBook("1234567890")).toThrow("This book was not borrowed");
 });
 
 test("should not allow adding a duplicate book (same ISBN)", () => {
@@ -111,6 +110,26 @@ test("should not allow return a non-existent book", () => {
   expect(() => library.returnBook("9999999999")).toThrow("Book does not exist");
 });
 
+test("should view borrowed books", () => {
+  library.addBook({
+    isbn: "123456789",
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    year: 1925,
+  });
+  library.addBook({
+    isbn: "987654321",
+    title: "1984",
+    author: "George Orwell",
+    year: 1949,
+  });
+
+  library.borrowBook("123456789");
+  const borrowedBooks = library.viewBorrowedBooks();
+
+  expect(borrowedBooks).toHaveLength(1);
+  expect(borrowedBooks[0].title).toBe("The Great Gatsby");
+});
 
 
 
