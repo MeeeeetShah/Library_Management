@@ -10,6 +10,7 @@ test('should add a book to the library', () => {
   
 });
 
+
 test("should borrow a book from the library", () => {
   const library = new Library();
   const book = { title: 'The Great Gatsby', author: 'Meet Shah', isbn: '1234567890',year:1925 };
@@ -18,6 +19,27 @@ test("should borrow a book from the library", () => {
   library.borrowBook("1234567890");
   const books = library.viewAvailableBooks();
   expect(books).toHaveLength(0);
+});
+
+test("should view all available books", () => {
+  const library = new Library();
+  library.addBook({
+    isbn: "1234567890",
+    title: "The Great Gatsby",
+    author: "Meet Shah",
+    year: 1925,
+  });
+  library.addBook({
+    isbn: "9876543211",
+    title: "1984",
+    author: "George Orwell",
+    year: 1949,
+  });
+
+  const books = library.viewAvailableBooks();
+  expect(books).toHaveLength(2);
+  expect(books[0].title).toBe("The Great Gatsby");
+  expect(books[1].title).toBe("1984");
 });
 
 test("should not borrow an unavailable book", () => {
@@ -80,9 +102,12 @@ test("should not allow adding a duplicate book (same ISBN)", () => {
   ).toThrow("Book with this ISBN already exists");
 });
 
+test("should not allow borrowing a non-existent book", () => {
+  expect(() => library.borrowBook("9999999999")).toThrow("Book does not exist");
+});
+
 
 
 
   
-  // expect(library.getBooks()).toContain(book);
-
+  
