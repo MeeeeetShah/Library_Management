@@ -25,9 +25,9 @@ class Library {
       }
     
     
-    getBooks() {
-      return this.books;
-    }
+      viewAvailableBooks() {
+        return this.books.filter((b) => !this.borrowedBooks.has(b.isbn));
+      }
 
   }
   
