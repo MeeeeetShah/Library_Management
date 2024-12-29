@@ -29,11 +29,17 @@ class Library {
     
     
     returnBook(isbn) {
-          if (!this.borrowedBooks.has(isbn)) {
-          throw new Error("This book was not borrowed");
-          }
-        this.borrowedBooks.delete(isbn);
+      const bookExists = this.books.some((b) => b.isbn === isbn);
+      if (!bookExists) {
+        throw new Error("Book does not exist");
       }
+    
+      if (!this.borrowedBooks.has(isbn)) {
+        throw new Error("This book was not borrowed");
+      }
+    
+      this.borrowedBooks.delete(isbn);
+    }
     
     
       viewAvailableBooks() {

@@ -107,6 +107,10 @@ test("should not allow borrowing a non-existent book", () => {
   expect(() => library.borrowBook("9999999999")).toThrow("Book does not exist");
 });
 
+test("should not allow return a non-existent book", () => {
+  expect(() => library.returnBook("9999999999")).toThrow("Book does not exist");
+});
+
 
 
 
