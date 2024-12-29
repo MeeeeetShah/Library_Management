@@ -5,12 +5,27 @@ class Library {
     }
   
     addBook(book) {
-      const { isbn } = book;
+      const { isbn, title, author, year } = book;
+    
+      // Validate ISBN
+      if (!/^\d{10}$/.test(isbn)) {
+        throw new Error("ISBN must be a 10-digit number");
+      }
+    
+      // Validate other book details
+      if (!isbn || !title || !author || !year) {
+        throw new Error("Book details are invalid");
+      }
+    
+      // Check for duplicate ISBN
       if (this.books.some((b) => b.isbn === isbn)) {
         throw new Error("Book with this ISBN already exists");
       }
+    
+      // Add the book to the collection
       this.books.push(book);
     }
+    
   
   
     borrowBook(isbn) {

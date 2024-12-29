@@ -112,19 +112,19 @@ test("should not allow return a non-existent book", () => {
 
 test("should view borrowed books", () => {
   library.addBook({
-    isbn: "123456789",
+    isbn: "1234567890",
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     year: 1925,
   });
   library.addBook({
-    isbn: "987654321",
+    isbn: "9876543211",
     title: "1984",
     author: "George Orwell",
     year: 1949,
   });
 
-  library.borrowBook("123456789");
+  library.borrowBook("1234567890");
   const borrowedBooks = library.viewBorrowedBooks();
 
   expect(borrowedBooks).toHaveLength(1);
@@ -207,8 +207,17 @@ test("should search for books by title or author", () => {
 test("should not allow adding a book with missing or invalid details", () => {
   expect(() =>
     library.addBook({
-      isbn: "",
+      isbn: "1234567800",
       title: "Invalid Book",
+      author: "",
+      year: 2023,
+    })
+  ).toThrow("Book details are invalid");
+
+  expect(() =>
+    library.addBook({
+      isbn: "1234567890",
+      title: "",
       author: "Author",
       year: 2023,
     })
@@ -216,13 +225,23 @@ test("should not allow adding a book with missing or invalid details", () => {
 
   expect(() =>
     library.addBook({
+      isbn: "1234567890",
+      title: "year missing",
+      author: "Author",
+      year: "",
+    })).toThrow("Book details are invalid");
+});
+test("ISBN must be a 10-digit number",( )=>{
+  expect(() =>
+    library.addBook({
       isbn: "123456789",
-      title: "",
+      title: "Meet Shah",
       author: "Author",
       year: 2023,
     })
-  ).toThrow("Book details are invalid");
+  ).toThrow("ISBN must be a 10-digit number");
 });
+
 
   
   
