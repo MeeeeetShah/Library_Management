@@ -15,7 +15,12 @@ class Library {
     }
     this.borrowedBooks.add(isbn);
       
-    }    
+    } 
+    
+    returnBook(isbn) {
+      
+      this.borrowedBooks.delete(isbn);
+    }
     getBooks() {
       return this.books;
     }
