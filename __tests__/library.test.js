@@ -204,6 +204,25 @@ test("should search for books by title or author", () => {
   expect(authorResults[0].title).toBe("1984");
 });
 
+test("should not allow adding a book with missing or invalid details", () => {
+  expect(() =>
+    library.addBook({
+      isbn: "",
+      title: "Invalid Book",
+      author: "Author",
+      year: 2023,
+    })
+  ).toThrow("Book details are invalid");
+
+  expect(() =>
+    library.addBook({
+      isbn: "123456789",
+      title: "",
+      author: "Author",
+      year: 2023,
+    })
+  ).toThrow("Book details are invalid");
+});
 
   
   
