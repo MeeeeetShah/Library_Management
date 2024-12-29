@@ -5,8 +5,13 @@ class Library {
     }
   
     addBook(book) {
+      const { isbn } = book;
+      if (this.books.some((b) => b.isbn === isbn)) {
+        throw new Error("Book with this ISBN already exists");
+      }
       this.books.push(book);
     }
+  
   
     borrowBook(isbn) {
       const bookIndex = this.books.findIndex((b) => b.isbn === isbn && !this.borrowedBooks.has(isbn));

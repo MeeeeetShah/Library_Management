@@ -62,6 +62,7 @@ test("should not return a book which is not borrowed", () => {
 });
 
 test("should not allow adding a duplicate book (same ISBN)", () => {
+  const library = new Library();
   library.addBook({
     isbn: "1234567890",
     title: "The Great Gatsby",
