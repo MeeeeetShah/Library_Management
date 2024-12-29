@@ -7,7 +7,7 @@ class Library {
     addBook(book) {
       const { isbn, title, author, year } = book;
     
-      // Validate ISBN
+      // Validate ISBN that 10 digit number
       if (!/^\d{10}$/.test(isbn)) {
         throw new Error("ISBN must be a 10-digit number");
       }
