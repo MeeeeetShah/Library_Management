@@ -14,13 +14,19 @@ class Library {
   
   
     borrowBook(isbn) {
-      const bookIndex = this.books.findIndex((b) => b.isbn === isbn && !this.borrowedBooks.has(isbn));
-    if (bookIndex === -1) {
-      throw new Error("Book is not available");
+      const bookExists = this.books.some((b) => b.isbn === isbn);
+      if (!bookExists) {
+        throw new Error("Book does not exist");
+      }
+    
+      const bookIsBorrowed = this.borrowedBooks.has(isbn);
+      if (bookIsBorrowed) {
+        throw new Error("Book is not available");
+      }
+    
+      this.borrowedBooks.add(isbn);
     }
-    this.borrowedBooks.add(isbn);
-      
-    } 
+    
     
     returnBook(isbn) {
           if (!this.borrowedBooks.has(isbn)) {
