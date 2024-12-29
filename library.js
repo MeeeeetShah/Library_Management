@@ -49,13 +49,21 @@ class Library {
       viewBorrowedBooks() {
         return this.books.filter((b) => this.borrowedBooks.has(b.isbn));
       }
-      
-      
+
+      viewAllBooks() {
+     return this.books;
+     }
+
+     searchBooks(query) {
+      return this.books.filter(
+        (b) =>
+          b.title.toLowerCase().includes(query.toLowerCase()) ||
+          b.author.toLowerCase().includes(query.toLowerCase())
+      );
+    }
     
 
-    viewAllBooks() {
-    return this.books;
-    }
+
   }
   
   module.exports = Library;

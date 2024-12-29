@@ -181,14 +181,15 @@ test("should display an empty list if no books are added", () => {
 });
 
 test("should search for books by title or author", () => {
+  const library = new Library();
   library.addBook({
-    isbn: "123456789",
+    isbn: "1234567890",
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     year: 1925,
   });
   library.addBook({
-    isbn: "987654321",
+    isbn: "9876543211",
     title: "1984",
     author: "George Orwell",
     year: 1949,
