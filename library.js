@@ -18,9 +18,13 @@ class Library {
     } 
     
     returnBook(isbn) {
-      
-      this.borrowedBooks.delete(isbn);
-    }
+          if (!this.borrowedBooks.has(isbn)) {
+          throw new Error("This book was not borrowed");
+          }
+        this.borrowedBooks.delete(isbn);
+      }
+    
+    
     getBooks() {
       return this.books;
     }
