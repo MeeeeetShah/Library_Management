@@ -131,6 +131,55 @@ test("should view borrowed books", () => {
   expect(borrowedBooks[0].title).toBe("The Great Gatsby");
 });
 
+test("should display all books (available and borrowed)", () => {
+  // Create a library instance
+  const library = new Library();
+
+  // Add books to the library
+  
+  library.addBook({
+    isbn: "1234567890",
+    title: "The Great Gatsby",
+    author: "Meet Shah",
+    year: 1925,
+  });
+  library.addBook({
+    isbn: "9876543211",
+    title: "1984",
+    author: "George Orwell",
+    year: 1949,
+  });
+
+  // Borrow one  Book from the library
+  library.borrowBook("1234567890");
+
+  // Expected result
+  const expectedAllBooks = [
+    {
+      isbn: "1234567890",
+      title: "The Great Gatsby",
+      author: "Meet Shah",
+      year: 1925,
+    },
+    {
+      isbn: "9876543211",
+    title: "1984",
+    author: "George Orwell",
+    year: 1949,
+      
+    },
+  ];
+
+  // Call viewAllBooks and verify the result
+  const allBooks = library.viewAllBooks();
+  expect(allBooks).toEqual(expectedAllBooks);
+});
+
+test("should display an empty list if no books are added", () => {
+  const library = new Library();
+  expect(library.viewAllBooks()).toEqual([]);
+});
+
 
 
   

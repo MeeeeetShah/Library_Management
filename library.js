@@ -46,6 +46,16 @@ class Library {
         return this.books.filter((b) => !this.borrowedBooks.has(b.isbn));
       }
 
+      viewBorrowedBooks() {
+        return this.books.filter((b) => this.borrowedBooks.has(b.isbn));
+      }
+      
+      
+    
+
+    viewAllBooks() {
+    return this.books;
+    }
   }
   
   module.exports = Library;
