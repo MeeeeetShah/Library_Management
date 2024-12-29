@@ -13,3 +13,15 @@
    ```bash
    git clone <repository-url>
    cd Library_Management
+
+2. Install dependencies:
+    ```bash
+  npm install
+
+# Run Tests
+## Run all tests using Jest:
+
+   ```bash
+   npm test
+
+
