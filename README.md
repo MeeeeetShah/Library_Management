@@ -16,7 +16,7 @@
 
 2. Install dependencies:
     ```bash
-  npm install
+     npm install
 
 # Run Tests
 ## Run all tests using Jest:
