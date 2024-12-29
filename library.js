@@ -1,6 +1,7 @@
 class Library {
     constructor() {
       this.books = [];
+      this.borrowedBooks = new Set();
     }
   
     addBook(book) {
@@ -8,7 +9,12 @@ class Library {
     }
   
     borrowBook(isbn) {
-      this.books = this.books.filter(book => book.isbn !== isbn);
+      const bookIndex = this.books.findIndex((b) => b.isbn === isbn && !this.borrowedBooks.has(isbn));
+    if (bookIndex === -1) {
+      throw new Error("Book is not available");
+    }
+    this.borrowedBooks.add(isbn);
+      
     }    
     getBooks() {
       return this.books;
