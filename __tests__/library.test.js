@@ -180,6 +180,28 @@ test("should display an empty list if no books are added", () => {
   expect(library.viewAllBooks()).toEqual([]);
 });
 
+test("should search for books by title or author", () => {
+  library.addBook({
+    isbn: "123456789",
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    year: 1925,
+  });
+  library.addBook({
+    isbn: "987654321",
+    title: "1984",
+    author: "George Orwell",
+    year: 1949,
+  });
+
+  const searchResults = library.searchBooks("Gatsby");
+  expect(searchResults).toHaveLength(1);
+  expect(searchResults[0].title).toBe("The Great Gatsby");
+
+  const authorResults = library.searchBooks("George Orwell");
+  expect(authorResults).toHaveLength(1);
+  expect(authorResults[0].title).toBe("1984");
+});
 
 
   
