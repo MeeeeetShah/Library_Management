@@ -61,6 +61,23 @@ test("should not return a book which is not borrowed", () => {
   expect(() => library.returnBook("1234567899")).toThrow("This book was not borrowed");
 });
 
+test("should not allow adding a duplicate book (same ISBN)", () => {
+  library.addBook({
+    isbn: "1234567890",
+    title: "The Great Gatsby",
+    author: "Meet Shah",
+    year: 1925,
+  });
+
+  expect(() =>
+    library.addBook({
+      isbn: "1234567890",
+      title: "Duplicate Book",
+      author: "Another Author",
+      year: 1930,
+    })
+  ).toThrow("Book with this ISBN already exists");
+});
 
 
 
